@@ -15,4 +15,14 @@ public class ParserTest {
 
         assertEquals(expectedItem, actualItem);
     }
+
+    @Test
+    public void shouldParseTheNonImportedItemDescriptionCorrectly() {
+        Parser parser = new Parser(null);
+
+        Item actualItem = parser.parse("1 chocolate bar at 0.85");
+        Item expectedItem = new Item("chocolate bar", 0.85, 1, null);
+
+        assertEquals(expectedItem, actualItem);
+    }
 }
