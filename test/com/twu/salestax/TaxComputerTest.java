@@ -35,4 +35,11 @@ public class TaxComputerTest {
 
         assertEquals(0.15, actualTaxFraction, 0.001);
     }
+
+    @Test
+    public void shouldAddOnlyImportedTaxOnImportedAndTaxExcludedItems() {
+        double actualTaxFraction = taxComputer.compute("imported box of chocolates");
+
+        assertEquals(0.05, actualTaxFraction, 0.001);
+    }
 }
