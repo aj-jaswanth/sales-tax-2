@@ -8,6 +8,7 @@ import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class TaxComputerTest {
@@ -22,9 +23,16 @@ public class TaxComputerTest {
     }
 
     @Test
-    public void shouldAddOnlyBasicSalesTaxForNonImportedItems() {
+    public void shouldAddOnlyBasicSalesTaxForNonImportedAndNonTaxExcludedItems() {
         double actualTaxFraction = taxComputer.compute("bottle of perfume");
 
         assertThat(actualTaxFraction, is(equalTo(0.1)));
+    }
+
+    @Test
+    public void shouldAddBothBasicSalesTaxAndImportedTaxForImportedAndNonTaxExcludedItems() {
+        double actualTaxFraction = taxComputer.compute("imported bottle of perfume");
+
+        assertEquals(0.15, actualTaxFraction, 0.001);
     }
 }

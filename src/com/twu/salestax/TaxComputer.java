@@ -15,7 +15,7 @@ public class TaxComputer {
         String[] array = itemDescription.split(" ");
         for (String word : array) {
             if (word.equals("imported"))
-                taxFraction += 0.5;
+                taxFraction += 0.05;
             if (isExcludedFromBasicTax(word)) {
                 taxFraction -= 0.10;
                 break;
