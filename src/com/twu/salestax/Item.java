@@ -38,4 +38,30 @@ public class Item {
         double totalSalesTaxApplicable = totalCostWithoutTaxes * (applicableTaxFraction);
         return round(totalSalesTaxApplicable);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (Double.compare(item.originalCost, originalCost) != 0) return false;
+        if (quantity != item.quantity) return false;
+        if (description != null ? !description.equals(item.description) : item.description != null) return false;
+        return !(taxComputer != null ? !taxComputer.equals(item.taxComputer) : item.taxComputer != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = description != null ? description.hashCode() : 0;
+        temp = Double.doubleToLongBits(originalCost);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + quantity;
+        result = 31 * result + (taxComputer != null ? taxComputer.hashCode() : 0);
+        return result;
+    }
 }
