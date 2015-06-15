@@ -21,9 +21,7 @@ public class Item {
 
     public double totalCostAfterTaxes() {
         double totalCostWithoutTaxes = originalCost * quantity;
-        double applicableTaxFraction = taxComputer.compute(description);
-        double totalCost = totalCostWithoutTaxes * (1 + applicableTaxFraction);
-        return round(totalCost);
+        return totalCostWithoutTaxes + salesTaxApplicable();
     }
 
     private double round(double totalCost) {
