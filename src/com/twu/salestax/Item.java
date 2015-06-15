@@ -16,7 +16,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return quantity + " " + description + ": " + originalCost;
+        return description + ": " + round(totalCostAfterTaxes());
     }
 
     public double totalCostAfterTaxes() {
@@ -28,7 +28,7 @@ public class Item {
         int temp = ((int) (totalCost * 1000)) % 10;
         totalCost = ((int) (totalCost * 100)) / 100.0;
         if (temp > 5)
-            totalCost += 0.01;
+            totalCost += 0.01d;
         return totalCost;
     }
 

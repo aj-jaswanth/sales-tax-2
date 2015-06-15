@@ -12,11 +12,13 @@ import static org.mockito.Mockito.when;
 public class ItemTest {
     @Test
     public void shouldReturnAMeaningfulRepresentationOfItself() {
-        Item item = new Item("imported bottle of perfume", 27.99, 1, null);
+        TaxComputer taxComputer = mock(TaxComputer.class);
+        when(taxComputer.compute("imported bottle of perfume")).thenReturn(0.15);
+        Item item = new Item("imported bottle of perfume", 27.99, 1, taxComputer);
 
         String actualOutput = item.toString();
 
-        assertEquals("1 imported bottle of perfume: 27.99", actualOutput);
+        assertEquals("imported bottle of perfume: 32.199999999999996", actualOutput);
     }
 
     @Test
