@@ -29,4 +29,15 @@ public class ItemTest {
 
         assertThat(actualCost, is(equalTo(32.19)));
     }
+
+    @Test
+    public void shouldReturnTotalTaxesApplied() {
+        TaxComputer taxComputer = mock(TaxComputer.class);
+        Item item = new Item("imported bottle of perfume", 27.99, 1, taxComputer);
+        when(taxComputer.compute("imported bottle of perfume")).thenReturn(0.15);
+
+        double actualCost = item.salesTaxApplicable();
+
+        assertThat(actualCost, is(equalTo(4.2)));
+    }
 }

@@ -33,4 +33,11 @@ public class Item {
             totalCost += 0.01;
         return totalCost;
     }
+
+    public double salesTaxApplicable() {
+        double totalCostWithoutTaxes = originalCost * quantity;
+        double applicableTaxFraction = taxComputer.compute(description);
+        double totalSalesTaxApplicable = totalCostWithoutTaxes * (applicableTaxFraction);
+        return round(totalSalesTaxApplicable);
+    }
 }
